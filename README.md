@@ -1,6 +1,3 @@
-# titanic-survival-ml
-Comparing a decision tree and KNN model to predict Titanic passenger survival (Python, scikit-learn)
-
 # Titanic Survival Prediction: Decision Tree vs KNN
 
 A machine learning comparison of two classification models that predict whether a
