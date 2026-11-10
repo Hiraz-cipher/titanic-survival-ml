@@ -7,7 +7,8 @@ get a prediction.
 
 ## Dataset
 - Titanic passenger data: 891 passengers, 12 columns (`Titanic-Dataset.csv`)
-- Source: [where you downloaded the dataset]
+- Provenance: the original download URL was not recorded. The committed CSV uses the familiar Titanic passenger training-data structure; its exact download source has not been verified.
+- [Dataset details and provenance limits](DATASET.md)
 - Target: `Survived` (1 = survived, 0 = did not survive)
 - Missing values: Age (177), Embarked (2), Cabin (687, not used)
 
@@ -22,7 +23,7 @@ get a prediction.
 - **Decision tree:** scikit-learn `DecisionTreeClassifier` with default settings
 - **K-nearest neighbours:** `KNeighborsClassifier` with k = 5, features not scaled
 
-## Results (test set)
+## Previously reported results (test set)
 | Model | Accuracy | Precision | Recall |
 |---|---|---|---|
 | Decision tree | 77.65% | 75.00% | 68.92% |
@@ -32,7 +33,7 @@ get a prediction.
 - **Precision:** of the passengers predicted to survive, the share that actually did
 - **Recall:** of the passengers who actually survived, the share the model found
 
-KNN is slightly more accurate and precise. The decision tree finds slightly more of the survivors.
+These are the previously recorded project results, not a new benchmark. The decision tree has no fixed model seed, so its results can vary between runs. In this recorded run, KNN was slightly more accurate and precise, while the decision tree recovered slightly more survivors.
 
 ## Files
 - `decision_tree_titanic.py`: decision tree model and interactive predictor
@@ -46,11 +47,9 @@ KNN is slightly more accurate and precise. The decision tree finds slightly more
 4. The model trains, prints the results, then asks for passenger details.
    Type `yes` to predict another passenger, or `no` to finish.
 
-## Demo videos
-- [Decision tree demo](https://onedrive.live.com/photos?photosData=%2Fshare%2F09848B11F3B69ABB%21sf6d35eb26dc04f5fb462c5f1663e5289%3Fithint%3Dvideo%26e%3DHh4EgM%26migratedtospo%3Dtrue&redeem=aHR0cHM6Ly8xZHJ2Lm1zL3YvYy8wOTg0OGIxMWYzYjY5YWJiL0ViSmUwX2JBYlY5UHRHTEY4V1ktVW9rQlVHVGp5OHV5OWxEM0NJN2Vfb2g1Z0E%5FZT1IaDRFZ00)
-- [KNN demo](https://onedrive.live.com/photos?photosData=%2Fshare%2F09848B11F3B69ABB%21s98c5c3d87d8745d3ab3654a96abc95ce%3Fithint%3Dvideo%26e%3DJKhtnz%26migratedtospo%3Dtrue&redeem=aHR0cHM6Ly8xZHJ2Lm1zL3YvYy8wOTg0OGIxMWYzYjY5YWJiL0VkakR4WmlIZmRORnF6WlVxV3E4bGM0Ql9aNk5iRmE0Uk1uVEdrRFUzN0dkeHc%5FZT1KS2h0bno)
+## Limitations and next steps
 
-## What I'd improve next
+Age imputation is performed before the train/test split, which leaks information from the test set into preprocessing. A future comparison should fit preprocessing on training data only, using a pipeline. The current results should be presented as an exploratory baseline.
 - Use more features (Fare, SibSp, Parch), which may improve accuracy
 - Scale the features for KNN, so Age does not dominate the distance calculation
 - Try different values of k, and use cross-validation instead of a single split
